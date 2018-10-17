@@ -6,5 +6,6 @@
         "teamwork_goals":{
             "url": "https://www.youtube.com/watch?v=d9yhs_tBASo"
         }
-    }
+    },
+    "output_dir": "../test/videos"
 }
