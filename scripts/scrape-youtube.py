@@ -6,25 +6,11 @@ import argparse
 import os
 
 def download(url, output_path, filename):
+    print("Downloading " + filename + " from " + url)
     yt = YouTube(url)
     yt.streams.filter(progressive=True, file_extension="mp4").order_by("resolution")\
             .desc().first().download(output_path=output_path, filename=filename)
 
-
-'''
-json config file structure (as of now):
-{
-    "videos":{
-        "video_one_name": {
-            "url": "www.example.com"
-        },
-        "video_two_name": {
-            "url": "www.example2.com"
-        }
-    },
-    "output_dir": "~/test/example"
-}
-'''
 
 def main():
     parser = argparse.ArgumentParser(description="Scrape videos from Youtube")
@@ -36,15 +22,14 @@ def main():
     with open(json_file) as f:
         data = json.load(f)
 
-    output_dir = data["output_dir"]
+    output_dir = "../videos/"
     if not os.path.isdir(output_dir):
         os.makedirs(output_dir)
 
-    for name in data["videos"]:
-        #maybe there is a cleaner way to do this?
-        url = data["videos"][name]["url"]
-        download(url, output_dir, name)
-
+    for elem in data:
+        url = elem["url"]
+        id_num = str(elem["id"])
+        download(url, output_dir, id_num)
 
 if __name__ == "__main__":
     main()
