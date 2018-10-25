@@ -1,16 +1,21 @@
 #!/usr/bin/env python3
 
 from pytube import YouTube
+from moviepy.video.io.ffmpeg_tools import ffmpeg_extract_subclip
 import json
 import argparse
 import os
 
+ext = ".mp4"
+
 def download(url, output_path, filename):
     print("Downloading " + filename + " from " + url)
     yt = YouTube(url)
-    yt.streams.filter(progressive=True, file_extension="mp4").order_by("resolution")\
+    yt.streams.filter(progressive=True, file_extension=ext[1:]).order_by("resolution")\
             .desc().first().download(output_path=output_path, filename=filename)
 
+def strip(filename, path, start_time, end_time):
+    ffmpeg_extract_subclip(path + filename + ext, start_time, end_time, path + filename + "_cut" + ext)
 
 def main():
     parser = argparse.ArgumentParser(description="Scrape videos from Youtube")
@@ -29,7 +34,12 @@ def main():
     for elem in data:
         url = elem["url"]
         id_num = str(elem["id"])
-        download(url, output_dir, id_num)
+        #check if the video already exists before we download it
+        if not os.path.exists(output_dir+id_num+ext):
+            download(url, output_dir, id_num)
+        #check if the clip already exists before we create it
+        if not os.path.exists(output_dir+id_num+"_cut"+ext):
+            strip(id_num, output_dir, int(elem["eventStart"]), int(elem["eventEnd"]))
 
 if __name__ == "__main__":
     main()
