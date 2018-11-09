@@ -14,19 +14,19 @@ print('Successfully downloaded labels.zip')
 
 images = zipfile.ZipFile('images.zip', 'r')
 for files in images.namelist():
-    images.extract(files, 'images')
+    images.extract(files, 'darknet/images')
 print('Successfully extracted images.zip')
 labels = zipfile.ZipFile('labels.zip', 'r')
 for files in labels.namelist():
-    labels.extract(files, 'images')
+    labels.extract(files, 'darknet/images')
 print('Successfully extracted labels.zip')
 images.close()
 labels.close()
 
 
 #THIS PUTS ALL THE IMAGES AND TEXT FILES IN THE SAME FOLDER
-sourceDir = 'images/labels'
-destDir = 'images/'
+sourceDir = 'darknet/images/labels'
+destDir = 'darknet/images/'
 files = os.listdir(sourceDir)
 for f in files:
     try:
@@ -35,7 +35,7 @@ for f in files:
         shutil.move(sourceFile, destDir)
     except:
         pass
-sourceDir = 'images/Photos2'
+sourceDir = 'darknet/images/Photos2'
 files = os.listdir(sourceDir)
 for f in files:
     try:
@@ -48,8 +48,8 @@ for f in files:
 
 os.remove("images.zip")
 os.remove("labels.zip")
-shutil.rmtree("images/Photos2")
-shutil.rmtree("images/labels")
+shutil.rmtree("darknet/images/Photos2")
+shutil.rmtree("darknet/images/labels")
 
 print("files deleted")
 
