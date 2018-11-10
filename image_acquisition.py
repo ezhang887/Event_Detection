@@ -45,6 +45,20 @@ for f in files:
     except:
         pass
 
+if not os.path.isdir('darknet/labels'):
+    os.makedirs('darknet/labels')
+sourceDir = 'darknet/images'
+destDir = 'darknet/labels'
+files = os.listdir(sourceDir)
+for f in files:
+    if f[-4:] != ".txt":
+        continue
+    try:
+        sourceFile = os.path.join(sourceDir, f)
+        directoryFile = os.path.join(destDir, f)
+        shutil.copy(sourceFile, destDir)
+    except:
+        pass
 
 os.remove("images.zip")
 os.remove("labels.zip")
