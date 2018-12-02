@@ -35,7 +35,7 @@ for f in files:
         shutil.move(sourceFile, destDir)
     except:
         pass
-sourceDir = 'darknet/images/Photos'
+sourceDir = 'darknet/images/Photos2'
 files = os.listdir(sourceDir)
 for f in files:
     try:
