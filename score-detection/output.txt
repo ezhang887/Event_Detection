@@ -1,0 +1,1 @@
+{"x": 45, "h": 16, "video_filename": "video.mp4", "y": 18, "w": 133}

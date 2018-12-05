@@ -1,16 +1,17 @@
 import cv2
 import numpy as np
-import os
+import json
 
 class Train:
 
     def __init__(self, filename):
         cap = cv2.VideoCapture(filename)
+        self.filename = filename
 
         self.frames = []
         i = 0
         while i < 1000:
-            rv, frame = cap.read()
+            rv, frame = cap.read() 
             if not rv:
                 break
             #cv2.imshow("frame", frame)
@@ -81,13 +82,14 @@ class Train:
         rect = cv2.boundingRect(c)
         return rect
 
-    def train(self, start_frame, end_frame):
+    def train(self, start_frame, end_frame, output_filename, display_image = True):
         #create training frames
         training_frames = self.frames[start_frame:end_frame]
 
         filtered_frame = self.preprocess(training_frames[0])
-        cv2.imshow("frame", training_frames[0])
-        cv2.imshow("filtered", filtered_frame)
+        if display_image:
+            cv2.imshow("frame", training_frames[0])
+            cv2.imshow("filtered", filtered_frame)
 
         #main processing
         prev_frame = None
@@ -104,9 +106,10 @@ class Train:
                         filtered_frame[y,x] = 255
                     else:
                         filtered_frame[y,x] = 0
-            cv2.imshow("frame", frame)
-            cv2.imshow("filtered", filtered_frame)
-            cv2.waitKey(10)
+            if display_image:
+                cv2.imshow("frame", frame)
+                cv2.imshow("filtered", filtered_frame)
+                cv2.waitKey(10)
             prev_frame = frame
 
         pre_morph_frame = filtered_frame.copy()
@@ -118,7 +121,21 @@ class Train:
         cv2.rectangle(filtered_frame,(x,y),(x+w,y+h),(0,255,0),2)
         cv2.rectangle(frame,(x,y),(x+w,y+h),(0,255,0),2)
 
-        while True:
+        data = {}
+        data["video_filename"] = self.filename
+        data["x"] = x
+        data["y"] = y
+        data["w"] = w
+        data["h"] = h
+
+        self.trained_data = data
+
+        with open(output_filename, "w") as outfile:
+            json.dump(data, outfile)
+            outfile.write("\n")
+        outfile.close()
+
+        while display_image:
             cv2.imshow("frame", frame)
             cv2.imshow("pre_morph", pre_morph_frame)
             cv2.imshow("filtered", filtered_frame)
