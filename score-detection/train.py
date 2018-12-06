@@ -5,24 +5,15 @@ import json
 class Train:
 
     def __init__(self, filename):
-        cap = cv2.VideoCapture(filename)
+        self.cap = cv2.VideoCapture(filename)
+        _, self.initial_frame = self.cap.read()
         self.filename = filename
 
-        self.frames = []
-        i = 0
-        while i < 1000:
-            rv, frame = cap.read() 
-            if not rv:
-                break
-            #cv2.imshow("frame", frame)
-            cv2.waitKey(10)
-            self.frames.append(frame)
-
-        self.height, self.width, self.channels = self.frames[0].shape
+        self.height, self.width, self.channels = self.initial_frame.shape
 
         self.green_thresh = 80
-        self.diff_thresh = 50
-        self.perc = 0.1
+        self.diff_thresh = 60
+        self.perc = 0.075
 
     def dist(self, dest, src):
         val = abs(dest[0]-src[0]) + abs(dest[1]-src[1]) + abs(dest[2]-src[2])
@@ -56,8 +47,8 @@ class Train:
     def morphology_expansion(self, y, x, filtered_frame, pre_morph):
         if pre_morph[y,x] != 255:
             return filtered_frame
-        for i in range(-2, 3):
-            for j in range(-2, 3):
+        for i in range(-1, 2):
+            for j in range(-1, 2):
                 in_height = y+i>0 and y+i <= self.height-1
                 in_width = x+j>=0 and x+j <= self.width-1
                 if in_height and in_width:
@@ -82,19 +73,22 @@ class Train:
         rect = cv2.boundingRect(c)
         return rect
 
-    def train(self, start_frame, end_frame, output_filename, display_image = True):
-        #create training frames
-        training_frames = self.frames[start_frame:end_frame]
-
-        filtered_frame = self.preprocess(training_frames[0])
+    def train(self, output_filename, display_image = True):
+        print("Preprocessing...")
+        filtered_frame = self.preprocess(self.initial_frame)
         if display_image:
-            cv2.imshow("frame", training_frames[0])
+            cv2.imshow("frame", self.initial_frame)
             cv2.imshow("filtered", filtered_frame)
+        print("Done reprocessing...")
 
+        print("Running main filter...")
         #main processing
         prev_frame = None
-        for i in range(1,len(training_frames)):
-            frame = training_frames[i]
+        rv = True
+        while rv:
+            rv, frame = self.cap.read()
+            if not rv:
+                break
             if prev_frame is None:
                 prev_frame = frame
                 continue
@@ -111,15 +105,22 @@ class Train:
                 cv2.imshow("filtered", filtered_frame)
                 cv2.waitKey(10)
             prev_frame = frame
+        print("Done running main filer...")
 
+        print("Postprocessing...")
         pre_morph_frame = filtered_frame.copy()
         for i in range(self.width):
             for j in range(self.height):
                 filtered_frame = self.morphology_expansion(j, i, filtered_frame, pre_morph_frame)
+        print("Done postprocessing")
+
+        print("Finding box")
         rect = self.find_rect(filtered_frame)
         x,y,w,h = rect
-        cv2.rectangle(filtered_frame,(x,y),(x+w,y+h),(0,255,0),2)
+        y += 1
+        h -= 2
         cv2.rectangle(frame,(x,y),(x+w,y+h),(0,255,0),2)
+        print("Done finding box")
 
         data = {}
         data["video_filename"] = self.filename
@@ -134,10 +135,4 @@ class Train:
             json.dump(data, outfile)
             outfile.write("\n")
         outfile.close()
-
-        while display_image:
-            cv2.imshow("frame", frame)
-            cv2.imshow("pre_morph", pre_morph_frame)
-            cv2.imshow("filtered", filtered_frame)
-            cv2.waitKey(10)
-        cv2.destroyAllWindows()
+        print("Saved data to file")

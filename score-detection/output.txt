@@ -1,1 +1,1 @@
-{"x": 45, "h": 16, "video_filename": "video.mp4", "y": 18, "w": 133}
+{"y": 18, "video_filename": "train.mp4", "x": 92, "w": 116, "h": 14}
