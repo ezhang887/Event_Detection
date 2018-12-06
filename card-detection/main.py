@@ -6,4 +6,4 @@ import cv2
 image = cv2.imread("image.jpg")
 
 c = CardDetector()
-c.detect(image)
+c.detect_red(image)

@@ -16,7 +16,7 @@ class CardDetector:
         totalArea = self.height*self.width
         return area/totalArea
 
-    def detect(self, image):
+    def detect_red(self, image):
         self.height, self.width, _ = image.shape
         hsv = cv2.cvtColor(image, cv2.COLOR_BGR2HSV)
         mask = cv2.inRange(hsv, self.red_low, self.red_high)
