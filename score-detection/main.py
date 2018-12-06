@@ -1,7 +1,7 @@
 from train import Train
 from detect import Detect
 
-train = True
+train = False
 
 if train:
     trainer = Train("train.mp4")

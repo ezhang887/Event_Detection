@@ -39,7 +39,13 @@ class Detect:
             if not rv:
                 raise Exception("Bad frame in video")
             cropped_frame = frame[self.y:self.y+self.h, self.x:self.x+self.w]
-            cv2.imshow("cropped_frame", cropped_frame)
+            resized = cv2.resize(cropped_frame,(int(100/self.h*self.w),100))
+            hsv = cv2.cvtColor(resized, cv2.COLOR_BGR2HSV)
+            low = np.array([0,0,0])
+            high = np.array([360,120,255])
+            mask = cv2.inRange(hsv, low, high)
+            cv2.imshow("hsv", hsv)
+            cv2.imshow("mask", mask)
             delta = self.delta(cropped_frame, prev_cropped_frame)
             prev_cropped_frame = cropped_frame
             cv2.rectangle(frame,(self.x,self.y),(self.x+self.w,self.y+self.h),(0,255,0),1)
