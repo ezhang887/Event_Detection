@@ -41,7 +41,7 @@ class Detect:
             cropped_frame = frame[self.y:self.y+self.h, self.x:self.x+self.w]
             resized = cv2.resize(cropped_frame,(int(100/self.h*self.w),100))
             hsv = cv2.cvtColor(resized, cv2.COLOR_BGR2HSV)
-            low = np.array([0,0,0])
+            low = np.array([0,0,150])
             high = np.array([360,120,255])
             mask = cv2.inRange(hsv, low, high)
             cv2.imshow("hsv", hsv)
