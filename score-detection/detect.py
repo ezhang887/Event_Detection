@@ -1,6 +1,8 @@
 import cv2
 import numpy as np
 import json
+import pytesseract
+import PIL
 
 class Detect:
     
@@ -38,11 +40,11 @@ class Detect:
             rv, frame = cap.read()
             if not rv:
                 raise Exception("Bad frame in video")
-            cropped_frame = frame[self.y:self.y+self.h, self.x:self.x+self.w]
-            resized = cv2.resize(cropped_frame,(int(100/self.h*self.w),100))
+            cropped_frame = frame[self.y:self.y+self.h, self.x + 5:self.x+self.w - 2]
+            resized = cv2.resize(cropped_frame,(int(30/self.h*self.w),30))
             hsv = cv2.cvtColor(resized, cv2.COLOR_BGR2HSV)
-            low = np.array([0,0,150])
-            high = np.array([360,120,255])
+            low = np.array([0,0,140])
+            high = np.array([360,150,255])
             mask = cv2.inRange(hsv, low, high)
             cv2.imshow("hsv", hsv)
             cv2.imshow("mask", mask)
@@ -50,4 +52,5 @@ class Detect:
             prev_cropped_frame = cropped_frame
             cv2.rectangle(frame,(self.x,self.y),(self.x+self.w,self.y+self.h),(0,255,0),1)
             cv2.imshow("frame", frame)
+            print(pytesseract.image_to_string(PIL.Image.fromarray(mask)))
             cv2.waitKey(20)
