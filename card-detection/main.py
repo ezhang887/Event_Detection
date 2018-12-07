@@ -22,7 +22,7 @@ def main():
 
 def test():
     detector = RedCardDetector()
-    detector.detect(cv2.imread("red/1.jpg"), 10000, True)
+    detector.detect(cv2.imread("red/3.jpg"), 10000, True)
 
 
 if __name__ == "__main__":
