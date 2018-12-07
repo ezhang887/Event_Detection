@@ -25,6 +25,7 @@ labels.close()
 
 
 #THIS PUTS ALL THE IMAGES AND TEXT FILES IN THE SAME FOLDER
+"""
 sourceDir = 'darknet/images/labels'
 destDir = 'darknet/images/'
 files = os.listdir(sourceDir)
@@ -59,11 +60,12 @@ for f in files:
         shutil.copy(sourceFile, destDir)
     except:
         pass
-
+"""
 os.remove("images.zip")
 os.remove("labels.zip")
+"""
 shutil.rmtree("darknet/images/Photos2")
 shutil.rmtree("darknet/images/labels")
-
+"""
 print("files deleted")
 
