@@ -21,9 +21,9 @@ def main():
 
 
 def test():
-    detector = RedCardDetector()
-    detector.detect(cv2.imread("red/3.jpg"), 10000, True)
+    detector = YellowCardDetector()
+    detector.detect(cv2.imread("yellow/3.jpg"), 10000, True)
 
 
 if __name__ == "__main__":
-    main()
+    test()
