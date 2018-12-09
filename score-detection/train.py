@@ -11,15 +11,17 @@ class Train:
 
         self.height, self.width, self.channels = self.initial_frame.shape
 
+        #parameters for filtering
         self.green_thresh = 80
         self.diff_thresh = 60
         self.perc = 0.075
 
+    #returns the "distance" between two pixels
     def dist(self, dest, src):
         val = abs(dest[0]-src[0]) + abs(dest[1]-src[1]) + abs(dest[2]-src[2])
-        #val = abs(dest-src)
         return val
 
+    #returns the max rgb values of a frame
     def max_rgb(self, frame):
         max_r, max_g, max_b = 0,0,0
         for x in range(self.width):
@@ -30,8 +32,8 @@ class Train:
                 max_b = max(curr[2], max_b)
         return max_r, max_g, max_b
 
+    #preprocessing step: filters out the grass on the soccer field and returns a filtered frame
     def preprocess(self, frame):
-        #pre-processing: filter the grass
         filtered_frame = frame.copy()
         max_r, max_g, max_b = self.max_rgb(frame)
         for x in range(self.width):
@@ -44,6 +46,7 @@ class Train:
         filtered_frame = cv2.cvtColor(filtered_frame, cv2.COLOR_BGR2GRAY)
         return filtered_frame
 
+    #performs a morphology expansion on the image
     def morphology_expansion(self, y, x, filtered_frame, pre_morph):
         if pre_morph[y,x] != 255:
             return filtered_frame
@@ -59,6 +62,7 @@ class Train:
                     filtered_frame[y][x+j] = 255
         return filtered_frame
 
+    #find the rectangle given the processsed binary image
     def find_rect(self, frame):
         _, thresh = cv2.threshold(frame, 254, 255, 0)
         _, contours, _ = cv2.findContours(thresh, cv2.RETR_LIST, cv2.CHAIN_APPROX_TC89_KCOS)

@@ -20,18 +20,6 @@ class Detect:
             print("There was an error opening your data file!")
             return
 
-    def delta(self, cropped_frame, prev_cropped_frame):
-        if prev_cropped_frame is None:
-            return 0
-        height = len(cropped_frame)
-        width = len(cropped_frame[0])
-        rv = 0
-        for i in range(height):
-            for j in range(width):
-                if cropped_frame[i,j].tolist() > [200,200,200]:
-                    rv += sum(abs(cropped_frame[i,j] - prev_cropped_frame[i,j]))
-        return rv//(height*width)
-
     def detect(self, video_file):
         cap = cv2.VideoCapture(video_file)
 
