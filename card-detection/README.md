@@ -9,6 +9,9 @@ This package contains scripts to detect yellow and red card occurrences in socce
   2. Convert the HSV image to a single channel binary image. We do this by specifying a lower and upper HSV bound for the color we want to detect. Anything outside of this bound is 0, while everything inside the bound is 255. This way, we filter out everything that is not the correct color for the object we are looking for.
   
       <img src="readme_images/image.jpg" width="300" height="400" />|<img src="readme_images/mask.jpg" width="300" height="400" />
+  3. Afterwards, we find all the [contours](https://docs.opencv.org/3.4/d3/d05/tutorial_py_table_of_contents_contours.html) in the filtered image.
+  
+  4. Then, we filter the contours, only looking for ones that could potentially be a soccer card. We first filter out all contours that are within another contour. Then, we check the area of the contour, the aspect ratio of the contour, the solidity of the contour, and some other filters. Many of the parameters for these were empirically tuned.
 
 ### Libraries used:
   - OpenCV
