@@ -10,14 +10,7 @@ The goal of this project is to detect events from a video recording of an event.
 ## YOLO v3 Object Detection
   YOLO v3 is a neural net which seeks to identify objects in an image if they exist. In this project we decided to see if Yellow Cards existed in an image/video. A model for this did not exist so we used darknet to train our own model. The output of this training is https://github.com/CS196Illinois/Event_Detection/tree/master/darknet/backup. This model can be used to identify yellow cards in still images or videos. 
   
- Demo (70% confidence): 
- <p align="center">
-    1)
-    <img src="https://github.com/CS196Illinois/Event_Detection/blob/master/testIMG4.jpg" width="350" alt="accessibility text">
-    2)
-  <img src="https://github.com/CS196Illinois/Event_Detection/blob/master/darknet/IMG4Prediction.jpg" width="350" alt="accessibility text">
-</p>
-  
+
   
   
   
