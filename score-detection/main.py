@@ -1,11 +1,11 @@
 from train import Train
 from detect import Detect
 
-train = True
+train = False
 
 if train:
-    trainer = Train("Basketball.mp4")
-    trainer.train("output.txt", False)
+    trainer = Train("goal.mp4")
+    trainer.train("goalOutput.txt", True)
 else:
-    detector = Detect("output.txt")
-    detector.detect("Basketball.mp4")
+    detector = Detect("goalOutput.txt")
+    detector.detect("goal.mp4")

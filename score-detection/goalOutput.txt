@@ -1,0 +1,1 @@
+{"video_filename": "goal.mp4", "x": 92, "y": 18, "w": 116, "h": 14}
