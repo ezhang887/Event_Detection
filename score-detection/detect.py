@@ -36,9 +36,27 @@ class Detect:
             mask = cv2.inRange(hsv, low, high)
             cv2.imshow("hsv", hsv)
             cv2.imshow("mask", mask)
-            delta = self.delta(cropped_frame, prev_cropped_frame)
             prev_cropped_frame = cropped_frame
             cv2.rectangle(frame,(self.x,self.y),(self.x+self.w,self.y+self.h),(0,255,0),1)
             cv2.imshow("frame", frame)
-            print(pytesseract.image_to_string(PIL.Image.fromarray(mask)))
+            print(validateString(pytesseract.image_to_string(PIL.Image.fromarray(mask))))
             cv2.waitKey(20)
+
+
+
+
+    def validateString(input):
+        blacklist = {'O'}
+        stringList = input.split(" ")
+        if (stringList[1] == 'O'):
+            stringList[1] = 0
+        if stringList[2] is 'O':
+            stringList[2] = 0
+        if len(stringList[0]) > 3:
+            stringList[0] = stringList[0][2:]
+        if len(stringList[0]) > 3:
+            stringList[3] = stringList[3][2:]
+
+        return stringList.join()
+
+
