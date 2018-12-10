@@ -4,7 +4,7 @@
 We used a custom dataset of Yellow Cards to create a model. The following are the results.
 
 
-### Results after 10,000 Itterations 
+### Results after 10,000 Iterations 
 
 MODEL: https://github.com/CS196Illinois/Event_Detection/blob/master/darknet/backup/yolov3-tiny_10000.weights
 
