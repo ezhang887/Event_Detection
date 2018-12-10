@@ -27,6 +27,10 @@ The goal of this project is to detect events from a video recording of an event.
  For more information go to https://github.com/CS196Illinois/Event_Detection/blob/master/card-detection/README.md
  
  
+ ## Optical Character Recognition of Overlays
+   For sporting events there are often overlays that are updated in realtime as a game is played. In soccer there is a graphical overlay that show the number of goals scored by each team. By writing a software that reads that graphic we can determine if a team scores a goal, and which team scores a goal. 
+   
+ 
  
   
   
