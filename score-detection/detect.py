@@ -28,8 +28,8 @@ class Detect:
             rv, frame = cap.read()
             if not rv:
                 raise Exception("Bad frame in video")
-            cropped_frame = frame[self.y:self.y+self.h, self.x + 5:self.x+self.w - 2]
-            resized = cv2.resize(cropped_frame,(int(30/self.h*self.w),30))
+            cropped_frame = frame[self.y:self.y+self.h, self.x:self.x+self.w]
+            resized = cv2.resize(cropped_frame,(int(100/self.h*self.w),100))
             hsv = cv2.cvtColor(resized, cv2.COLOR_BGR2HSV)
             low = np.array([0,0,140])
             high = np.array([360,150,255])

@@ -4,8 +4,8 @@ from detect import Detect
 train = True
 
 if train:
-    trainer = Train("Basketball.mp4")
-    trainer.train("output.txt", False)
+    trainer = Train("train.mp4")
+    trainer.train("output.txt", True)
 else:
     detector = Detect("output.txt")
-    detector.detect("Basketball.mp4")
+    detector.detect("video.mp4")
