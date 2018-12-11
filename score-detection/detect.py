@@ -38,8 +38,6 @@ class Detect:
         answer = ""
         for string in stringList:
             answer += str(string) + " "
-
-
         #remove the space at the end
         answer.rstrip()
         if len(answer) < 11:

@@ -1,0 +1,1 @@
+{"video_filename": "TrimmedFiles/Champsgoal.mp4", "x": 91, "y": 18, "w": 117, "h": 15}
