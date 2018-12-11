@@ -9,7 +9,7 @@ FA18 project for CS 196 focused on event detection/recognition. We decided to fo
 Click [here](https://github.com/CS196Illinois/Event_Detection/blob/master/darknet) for more information.
  
 ## Color Filtering and Blob Detection
-  Color filtering analyzes each frame of a video and filteres the pixels for the desired color and shape. Traditional computer vision techniques are used here, such as HSV filtering and contour/blob processing. This is an alternative to YOLO for detecting events with yellow cards.
+  This package analyzes each frame of a video and filteres the pixels for the desired color and shape. Traditional computer vision techniques are used here, such as HSV filtering and contour/blob processing. This is an alternative to YOLO for detecting events with yellow cards.
   
 Click [here](https://github.com/CS196Illinois/Event_Detection/blob/master/card-detection) for more information.
  
