@@ -25,21 +25,16 @@ class Detect:
         stringList = input.split(" ")
         if (len(stringList) >= 4 and (len(stringList[0]) < 2 or len(stringList[3]) < 2)) or len(stringList[0].strip()) < 3:
             return ""
-
         if len(stringList) >= 2:
             if 'O' in stringList[1]:
                 stringList[1] = 0
         if len(stringList) >= 3:
             if 'O' in stringList[2]:
                 stringList[2] = 0
-
         if len(stringList[0]) >= 1: #we already know they length will be greater than 0
             stringList[0] = stringList[0][0:3]
-
-
         if len(stringList) >= 4 and len(stringList[3]) >= 4:
             stringList[3] = stringList[3][0:3]
-
         answer = ""
         for string in stringList:
             answer += str(string) + " "
