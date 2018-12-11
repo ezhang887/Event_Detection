@@ -17,3 +17,13 @@ Click [here](https://github.com/CS196Illinois/Event_Detection/blob/master/card-d
    In sporting events there are almost always scoring overlays that are updated in real-time as the match goes on. Our solution to detect when goals were scored in soccer uses this fact. We used color filtering to detect where the overlay was in a video, and then used optical character recognition to figure out what the scores are and when they change.
    
 Click [here](https://github.com/CS196Illinois/Event_Detection/blob/master/score-detection) for more information.
+
+#### Team members:
+  - Akhil Isanaka
+  - Himanshu Minocha
+  - Eric Zhang
+  
+#### PM/Project acvice:
+  - Omar Khan
+  - Sathwik Pochampally
+  
