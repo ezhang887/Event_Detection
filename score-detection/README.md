@@ -11,7 +11,7 @@ This package contains scripts to detect goals scored in soccer. We accomplish th
   
       <img src="readme_images/mid_processing.png" width="400" height="200"/>|<img src="readme_images/post_processing.png" width="400" height="200"/>
   
-  3. Afterwards, we expand the scoreboard and use pytesseract to convert the image to a string. Then, we do some filtering to remove noisy characters from the string, to figure out the current score and when it changes.
+  3. Afterwards, we detect and expand the scoreboard and use pytesseract to convert the image to a string. Then, we do some filtering to remove noisy characters from the string to figure out the current score and when it changes.
   
       <img src="readme_images/ocr.png" width="400" height="200"/>
 
