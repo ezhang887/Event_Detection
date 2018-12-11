@@ -152,6 +152,7 @@ class Train:
         outfile.close()
         print("Saved data to file")
 
+
         while display_image:
             cv2.imshow("frame", frame)
             cv2.imshow("filtered", filtered_frame)

@@ -1,0 +1,1 @@
+{"video_filename": "TrimmedFiles/OrigGoal.mp4", "x": 93, "y": 19, "w": 115, "h": 13}

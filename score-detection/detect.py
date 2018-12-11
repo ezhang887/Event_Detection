@@ -32,7 +32,7 @@ class Detect:
             if 'O' in stringList[2]:
                 stringList[2] = 0
         if len(stringList[0]) >= 1: #we already know they length will be greater than 0
-            stringList[0] = stringList[0][0:3]
+            stringList[0] = stringList[0][1:4]
         if len(stringList) >= 4 and len(stringList[3]) >= 4:
             stringList[3] = stringList[3][0:3]
         answer = ""
@@ -63,5 +63,6 @@ class Detect:
             prev_cropped_frame = cropped_frame
             cv2.rectangle(frame,(self.x,self.y),(self.x+self.w,self.y+self.h),(0,255,0),1)
             cv2.imshow("frame", frame)
+            #print(pytesseract.image_to_string(PIL.Image.fromarray(mask)))
             print(self.validateString(pytesseract.image_to_string(PIL.Image.fromarray(mask))))
             cv2.waitKey(20)
