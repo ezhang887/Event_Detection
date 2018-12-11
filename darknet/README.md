@@ -51,6 +51,18 @@ MODEL: https://github.com/CS196Illinois/Event_Detection/blob/master/darknet/back
 
 
 
+## Issues
+Problem: Training was really, really slow on our computers
+Solution: We use the ACM GPU cluster to get a faster CPU as well as use a CUDA based GPU
+
+Problem: We kept running out of ram when we were training on the GPU Cluster. 
+Solution: We reduced the data size
+
+Problem: The results of the training were suboptimal. 
+Solution: We switched from normal darknet and moved to darknet-tiny which worked better given the computing hardware at our disposal. 
+
+Problem: Weights file needs a GPU to run
+Solution: A CUDA gpu would be needed in order to use the weights in realtime. 
 
 
 
