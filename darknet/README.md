@@ -29,6 +29,34 @@ MODEL: https://github.com/CS196Illinois/Event_Detection/blob/master/darknet/back
 
 
 
+### Data 
+
+
+#### Number of Objects Detected
+ <p align="center">
+    <img src="https://github.com/CS196Illinois/Event_Detection/blob/master/darknet/NumberOfObjects.png" alt="accessibility text">
+</p>
+
+#### Average Confidence Per Weights File
+ <p align="center">
+    <img src="https://github.com/CS196Illinois/Event_Detection/blob/master/darknet/Average%20Confidence.png" alt="accessibility text">
+</p>
+
+#### Change in Confidence Per Image Per Weight File
+ <p align="center">
+    <img src="https://github.com/CS196Illinois/Event_Detection/blob/master/darknet/Change%20In%20Confidence.png" alt="accessibility text">
+</p>
+
+
+
+
+
+
+
+
+
+
+
 
 
   
