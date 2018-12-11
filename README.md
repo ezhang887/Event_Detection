@@ -23,7 +23,7 @@ Click [here](https://github.com/CS196Illinois/Event_Detection/blob/master/score-
   - Himanshu Minocha
   - Eric Zhang
   
-#### PM/Project acvice:
+#### Special thanks to:
   - Omar Khan
   - Sathwik Pochampally
   

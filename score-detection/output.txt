@@ -1,1 +1,0 @@
-{"y": 18, "h": 14, "x": 92, "w": 117, "video_filename": "train.mp4"}
