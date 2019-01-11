@@ -1,7 +1,8 @@
 # CS 196 - Event Detection (formerly Camera Mesh Network)
 FA18 project for CS 196 focused on event detection/recognition. We decided to focus on sports events, specifically soccer.
 
-Note: This repository was imported from the original [CS196Illinois](https://github.com/CS196Illinois) organization after the semester ended the original was made private.
+**Note: This repository was imported from the original [CS196Illinois](https://github.com/CS196Illinois) organization after the semester ended and the original repository was made private.**
+
 ## YOLO Object Detection
   [YOLO](https://pjreddie.com/darknet/yolo/) is a real-time detection algorithm developed for object detection. We used [darknet](https://pjreddie.com/darknet/) (a neural network using YOLO) to detect yellow cards from soccer matches in an image/video. The pretrained models did not suppert this feature, so we ended up training a custom model for this. 
   
